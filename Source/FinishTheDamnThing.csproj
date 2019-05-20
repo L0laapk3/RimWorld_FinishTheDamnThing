@@ -25,7 +25,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\Assemblies\</OutputPath>
+    <OutputPath>..\Release\Assemblies\</OutputPath>
     <DefineConstants>
     </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -57,4 +57,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>
+      echo F|xcopy "$(ProjectDir)..\About\About-$(ConfigurationName).xml" "$(TargetDir)..\About\About.xml" /C /Y /K /Q /D
+      echo F|xcopy "$(ProjectDir)..\About\Preview.png" "$(TargetDir)..\About\Preview.png" /C /Y /K /Q /D
+    </PostBuildEvent>
+  </PropertyGroup>
 </Project>
